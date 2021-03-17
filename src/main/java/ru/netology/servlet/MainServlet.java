@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 public class MainServlet extends HttpServlet {
     public static final String ENDPOINT = "/api/posts";
     public static final String BORDER = "/";
@@ -17,9 +19,10 @@ public class MainServlet extends HttpServlet {
 
     @Override
     public void init() {
-        final var repository = new PostRepository();
-        final var service = new PostService(repository);
-        controller = new PostController(service);
+        final var context = new AnnotationConfigApplicationContext("ru.netology");
+        final var repository = context.getBean(PostRepository.class);
+        controller = context.getBean(PostController.class);
+        var service = context.getBean(PostService.class);
     }
 
     @Override
