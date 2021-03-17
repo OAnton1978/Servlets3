@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-@Repository
+
 public class PostRepositoryStubImpl implements PostRepository {
     ConcurrentHashMap<Integer, String> postsColl = new ConcurrentHashMap<>();
     AtomicInteger integer = new AtomicInteger(2);
